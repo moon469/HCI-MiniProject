@@ -1,0 +1,816 @@
+package com.moon;
+
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import javax.swing.ButtonGroup;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
+
+
+public class Test implements ActionListener{
+	JFrame f=new JFrame();
+	JFrame f1=new JFrame();
+	JFrame f2=new JFrame();
+	JFrame f3=new JFrame();
+	JFrame f4=new JFrame();
+	JFrame f5=new JFrame();//student test
+	JFrame f6=new JFrame();//start test..
+	JLabel l0=new JLabel("Testing System");
+	JLabel l1=new JLabel("Email");
+	JLabel l2=new JLabel("Password");
+	JTextField t1=new JTextField();
+	
+	JTextField t2 = new JTextField();
+
+	
+	String Ans1="";
+	static int correct=0;
+	
+	JButton b1=new JButton("Student");
+	JButton b11=new JButton("teacher");
+	JButton b2=new JButton("Student");
+	JButton b22=new JButton("teacher");
+	
+	JButton b3=new JButton("Save");
+	JButton b4=new JButton("Create Test");
+	
+	Statement stmt=null;
+	
+	JLabel l00=new JLabel("Registration");
+	
+	JLabel l11=new JLabel("Username");
+	JLabel l22=new JLabel("Email");
+	JLabel l33=new JLabel("Password");
+	JLabel l44=new JLabel("conf Pass");
+	JLabel l55=new JLabel("Select your Trade");
+	
+	JTextField t11=new JTextField();
+	JTextField t22=new JTextField();
+	JTextField t33=new JTextField();
+	JTextField t44=new JTextField();
+		JComboBox t55=new JComboBox();
+		JComboBox c1=new JComboBox();
+		////////////////////////////
+		
+		
+		JLabel lf0=new JLabel("welcome to the test");	
+		
+		JLabel lf1=new JLabel("Q");	
+		
+		JRadioButton r1=new JRadioButton();	
+		JRadioButton r2=new JRadioButton();	
+		JRadioButton r3=new JRadioButton();	
+		JRadioButton r4=new JRadioButton();	
+		
+		
+		
+		JLabel tf1=new JLabel();
+		JLabel tf2=new JLabel();
+		JLabel tf3=new JLabel();
+		JLabel tf4=new JLabel();
+		JLabel tf5=new JLabel();
+		
+		ButtonGroup G = new ButtonGroup();
+		
+		
+		JButton b6= new JButton("Start Test");
+		
+		JButton b7= new JButton("Submit");
+		JButton b8= new JButton("Next");
+		
+		
+		
+		
+		
+	String trade[]={"java","css","html","python",};	
+
+	String trade1[]={"java","css","html","python",};	
+
+	
+	
+	
+	JLabel lx0=new JLabel("welcome to the test Generator");	
+	
+	JLabel lx1=new JLabel("Q");	
+	
+	JLabel lx2=new JLabel("opa");	
+	JLabel lx3=new JLabel("opb");	
+	JLabel lx4=new JLabel("opc");	
+	JLabel lx5=new JLabel("opd");	
+	JLabel lx6=new JLabel("ans");	
+	
+	JTextField tt1=new JTextField();
+	JTextField tt2=new JTextField();
+	JTextField tt3=new JTextField();
+	JTextField tt4=new JTextField();
+	JTextField tt5=new JTextField();
+	JTextField tt6=new JTextField();
+
+	
+	JButton b5= new JButton("Create");
+
+	
+	public Test() {
+		f.setSize(500,500);
+		f.setVisible(true);
+		f.setLocation(100, 100);
+		f.setLayout(null);
+	
+		
+		one();
+		
+Font font = new Font("Courier", Font.BOLD,18);
+		l0.setFont(font);
+		l1.setFont(font);
+	
+		l2.setFont(font);
+		l00.setFont(font);
+		l11.setFont(font);
+		l22.setFont(font);
+		l33.setFont(font);
+		l44.setFont(font);
+		l55.setFont(font);
+		
+		
+		f.add(l0);
+		l0.setBounds(180, 20, 200, 38);
+	
+		f.add(l1);
+		l1.setBounds(100, 100, 100, 38);
+		
+		f.add(l2);
+		l2.setBounds(100, 200, 100, 38);
+		
+		f.add(t1);
+		t1.setBounds(250, 100, 120, 38);
+		
+		f.add(t2);
+		t2.setBounds(250, 200, 120, 38);
+		
+		f.add(b1);
+		b1.setBounds(150, 300, 80, 38);
+		
+		f.add(b11);
+		b11.setBounds(250, 300, 80, 38);
+		
+		b11.addActionListener(this);
+		b1.addActionListener(this);
+		b2.addActionListener(this);
+		b22.addActionListener(this);
+		b3.addActionListener(this);
+		b4.addActionListener(this);
+		b5.addActionListener(this);
+		b6.addActionListener(this);
+		b7.addActionListener(this);
+		b8.addActionListener(this);
+		
+		
+		try{
+			Class.forName("com.mysql.jdbc.Driver");
+			
+			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3307/demo","root","");
+			System.out.println("Connection Success");
+		
+			stmt=con.createStatement();
+			
+			}catch(Exception e){
+				
+				e.printStackTrace();
+			}
+		
+	}
+	public static void main(String[] args) {
+	
+new Test();
+	}
+	 static int ids=1;
+	 static int idd=1;
+		
+	//static int id=0;
+	
+	public void actionPerformed(ActionEvent action) {
+		
+		
+		if(action.getSource()==b1){
+
+			if(t1.getText().equals("")){
+				JOptionPane.showMessageDialog(null, "Enter your email first");
+				
+			}else if(t2.getText().equals("")){
+				
+				JOptionPane.showMessageDialog(null, "Enter your password first");
+				
+			}		
+			
+			if(t1.getText().equals("") || t2.getText().equals("")){
+				
+				
+				
+			}else{
+			
+			String email=this.t1.getText();
+			String password=this.t2.getText();
+			
+			
+			String sql="select * from student1 where email='"+email+"' and password='"+password+"'";
+			int row=0;
+		
+			System.out.println(sql);
+			
+			try {
+			ResultSet rs = stmt.executeQuery(sql);
+			
+				if(rs.next()){
+					two();
+					
+					ids=rs.getInt("id");
+					String name=rs.getString("name");
+					String emails=rs.getString("email");
+					String passwords=rs.getString("password");
+					
+
+					//f.setVisible(false);
+				
+				}else{
+					f.setVisible(false);
+					f1.setVisible(true);
+					
+					
+					JOptionPane.showMessageDialog(null,"not success");
+					
+				}
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				
+			}	
+			}
+			
+		}
+		
+		else if(action.getSource()==b11){
+		
+			if(t1.getText().equals("")){
+				JOptionPane.showMessageDialog(null, "Enter your email first");
+				
+			}else if(t2.getText().equals("")){
+				
+				JOptionPane.showMessageDialog(null, "Enter your password first");
+				
+			}		
+			
+			if(t1.getText().equals("") || t2.getText().equals("")){
+				
+			}else{
+			
+			String email=this.t1.getText();
+			String password=this.t2.getText();
+			
+			
+			String sql="select * from teacher where email='"+email+"' and password='"+password+"'";
+			int row=0;
+		
+			System.out.println(sql);
+			
+			try {
+			ResultSet rs = stmt.executeQuery(sql);
+			
+				if(rs.next()){
+					two();
+					
+					ids=rs.getInt("id");
+					String name=rs.getString("name");
+					String emails=rs.getString("email");
+					String passwords=rs.getString("password");
+					
+					f.setVisible(false);
+					f3.setVisible(true);
+					three();
+					f1.setVisible(false);
+				}else{
+					f.setVisible(false);
+					f1.setVisible(true);
+					
+					
+					JOptionPane.showMessageDialog(null,"not success");
+					
+				}
+				
+			} catch (SQLException e) {
+				
+				e.printStackTrace();
+				
+			}	
+			}
+		}else if(action.getSource()==b2){
+			
+			String name=this.t11.getText();
+			String email=this.t22.getText();
+			String password=this.t33.getText();
+			String trade=this.t55.getSelectedItem().toString();;
+			
+			///////////////////////////////////////// Mismatch issue
+			if(t11.getText().equals("") || t22.getText().equals("") || t33.getText().equals("") || t55.getSelectedItem().toString().equals("")){
+
+				 if(t33.getText().equals(t44.getText())){
+						
+						
+					}else{
+						JOptionPane.showMessageDialog(null, " Password mismatch");
+						
+					}
+				
+				
+				
+				
+				
+			}else{
+			
+				f3.setVisible(true);
+				f4.setVisible(false);
+				f6.setVisible(true);
+				four();
+				six();
+			
+			int row=0;
+			
+			String sql="insert into student1(name,email,password,trade)value('"+name+"','"+email+"','"+password+"','"+trade+"')";
+				
+			System.out.println(sql); 
+			try {
+				row=stmt.executeUpdate(sql);
+				System.out.println(sql);
+
+			} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}				
+		}else if(action.getSource()==b22){
+	
+			String name=this.t11.getText();
+			String email=this.t22.getText();
+			String password=this.t33.getText();
+			String trade=this.t55.getSelectedItem().toString();;
+			
+			if(t11.getText().equals("")){
+				JOptionPane.showMessageDialog(null, "Enter your name first");
+				
+			}else if(t22.getText().equals("")){
+				
+				JOptionPane.showMessageDialog(null, "Enter your email first");
+				
+			}
+			if(t33.getText().equals(t44.getText())){
+				
+			}else{//////////////////////////mismach issue
+				JOptionPane.showMessageDialog(null, "password mismatch ada");
+			}
+			
+			if(t11.getText().equals("") || t22.getText().equals("") || t33.getText().equals("") || t55.getSelectedItem().toString().equals("")){
+				
+			}else{
+			
+			int row=0;
+			
+			f3.setVisible(false);
+			f4.setVisible(true);
+			four();
+			three();
+			String sql="insert into teacher(name,email,password,trade)value('"+name+"','"+email+"','"+password+"','"+trade+"')";
+				
+			System.out.println(sql); 
+			try {
+				row=stmt.executeUpdate(sql);
+				System.out.println(sql);
+				
+				
+				//return integer
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+			}
+			
+		}
+		
+		else if(action.getSource()==b3){
+//////////////////////////////////////////////////////////////
+		}else if(action.getSource()==b4){
+		f4.setVisible(true);	
+			four();
+		}else if(action.getSource()==b5){
+			
+			String Question=this.tt1.getText();
+			String op1=this.tt2.getText();
+			String op2=this.tt3.getText();
+			String op3=this.tt4.getText();
+			String op4=this.tt5.getText();
+			String ans=this.tt6.getText();
+			
+			int row=0;
+			
+			String sql="insert into java(Question,op1,op2,op3,op4,ans)value('"+Question+"','"+op1+"','"+op2+"','"+op3+"','"+op4+"','"+ans+"')";
+				
+			System.out.println(sql); 
+			try {
+				row=stmt.executeUpdate(sql);
+				System.out.println(sql);
+				
+				
+				//return integer
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			
+		}else if(action.getSource()==b6){
+			
+			
+			String sql="select * from java where id="+idd;
+			int row=0;
+		
+			System.out.println(sql);
+			
+			try {
+			ResultSet rs = stmt.executeQuery(sql);
+			
+				if(rs.next()){
+					two();
+					
+					idd=rs.getInt("id");
+					String Question=rs.getString("Question");
+					String op1=rs.getString("op1");
+					String op2=rs.getString("op2");
+					
+					String op3=rs.getString("op3");
+					String op4=rs.getString("op4");
+					
+					lf1.setText(Question);
+					r1.setText(op1);
+					r2.setText(op2);
+					r3.setText(op3);
+					r4.setText(op4);
+					
+					
+					
+					
+					f2.setVisible(false);
+					f5.setVisible(true);
+					f6.setVisible(false);
+					five();	
+				}else{
+				
+				f4.setVisible(true);
+				
+				five();
+				six();
+				f5.setVisible(true);			
+				f6.setVisible(true);	
+					JOptionPane.showMessageDialog(null,"not success");
+					
+				}
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				
+			}	
+		
+		}else if(action.getSource()==b7){
+														//test work!
+
+		}else if(action.getSource()==b8){
+			ids++;
+			
+			//JOptionPane.showMessageDialog(null,"C");
+
+			
+		String sel="select * from java where id="+ids;
+		ResultSet rs;
+		
+	try {
+		rs=stmt.executeQuery(sel);
+		if(rs.next()){
+			ids=rs.getInt("id");
+			
+			String Question=rs.getString("Question");
+			String Opt1=rs.getString("op1");
+			String Opt2=rs.getString("op2");
+			
+			String Opt3=rs.getString("op3");
+			String Opt4=rs.getString("op4");
+			
+			Ans1=rs.getString("ans");
+			
+			
+			
+			lf1.setText(Question);
+			r1.setText(Opt1);
+			r2.setText(Opt2);
+			r3.setText(Opt3);
+			r4.setText(Opt4);
+			
+			
+			if(r1.isSelected()){
+				 
+				if(Opt1.equals(Ans1)){
+				
+
+					JOptionPane.showMessageDialog(null,"CORRECT op1"+Opt1);
+					
+					correct+=1;
+						
+					}
+				}else if(r2.isSelected()){
+				 
+				if(Opt2.equals(Ans1)){
+					
+					correct+=1;
+
+					JOptionPane.showMessageDialog(null,"CORRECT op2"+Opt2);
+				}
+				
+				}
+			 
+			 
+			   if(r3.isSelected()){
+				   
+				 if(Opt3.equals(Ans1)){
+
+
+						JOptionPane.showMessageDialog(null,"CORRECT op3"+Opt3);
+					 correct+=1;
+					 
+				}	 
+			   }
+			   
+			   if(r4.isSelected()){
+				 if(Opt4.equals(Ans1)){
+					
+					JOptionPane.showMessageDialog(null,"CORRECT op4"+Opt4);
+					
+					correct+=1;
+				}
+				 
+			   }
+
+			
+			System.out.println("Score: "+correct);
+			
+			
+			
+		}else{
+			
+			JOptionPane.showMessageDialog(null,"no more Questions");
+		}
+		
+		
+	} catch (SQLException e) {
+		
+		e.printStackTrace();
+	}	
+
+		
+		
+	}
+		
+}public void one(){
+	
+	
+	f1.setSize(600,800);
+	
+	f1.setLocation(100, 100);
+	f1.setLayout(null);
+	
+	f1.add(l00);
+	l00.setBounds(230, 20, 150 , 38);
+	
+	f1.add(l11);
+	l11.setBounds(150, 100, 100, 38);
+	
+	f1.add(l22);
+	l22.setBounds(150, 200, 100, 38);
+	
+	f1.add(l33);
+	l33.setBounds(150, 300, 100, 38);
+	
+	f1.add(l44);
+	l44.setBounds(150, 400, 100, 38);
+	
+	f1.add(l55);
+	l55.setBounds(150, 500, 100, 38);
+	
+	for(int t=0;t<trade.length;t++){
+		
+		t55.addItem(trade[t]);
+	}
+	
+for(int t=0;t<trade1.length;t++){
+		
+		c1.addItem(trade1[t]);
+	}
+	
+	f1.add(t11);
+	t11.setBounds(350, 100, 120, 38);
+	f1.add(t22);
+	t22.setBounds(350, 200, 120, 38);
+	f1.add(t33);
+	t33.setBounds(350, 300, 120, 38);
+	f1.add(t44);
+	t44.setBounds(350, 400, 120, 38);
+	f1.add(t55);
+	t55.setBounds(350, 500, 120, 38);
+	
+	
+	f1.add(b2);
+	b2.setBounds(150, 675, 90, 38);
+	
+	f1.add(b22);
+	b22.setBounds(250, 675, 90, 38);
+	
+
+}
+public void two(){
+
+
+	f2.setSize(500,500);
+	f2.setVisible(true);
+	f2.setLocation(100, 100);
+	f2.setLayout(null);
+	
+	String email=t1.getText();
+	f2.add(lf0);
+	lf0.setBounds(50,20,150,38);
+	
+	f2.add(c1);
+	c1.setBounds(100, 150, 80, 38);
+
+																				 ///////
+	f2.add(b6);
+	b6.setBounds(200, 150, 120, 38);
+
+}public void three(){
+
+	Font font = new Font("Courier", Font.BOLD,18);
+	
+	f3.setSize(500,500);
+	f3.setVisible(true);
+	f3.setLocation(100, 100);
+	f3.setLayout(null);
+	
+
+	f3.add(c1);
+	c1.setBounds(100, 150, 120, 38);
+																					//create test
+	f3.add(b4);
+	b4.setBounds(250, 150, 120, 38);
+
+}public void four(){
+	f4.setSize(500,500);
+	f4.setVisible(true);
+	f4.setLocation(100, 100);
+	f4.setLayout(null);
+	
+	Font font = new Font("Courier", Font.BOLD,18);
+	lx1.setFont(font);
+	
+	f4.add(lx0);
+	lx0.setBounds(100, 10, 300 , 38);
+	
+	
+	f4.add(lx1);
+	lx1.setBounds(50, 100, 30 , 38);
+	
+	f4.add(lx2);
+	lx2.setBounds(100, 150, 30, 35);
+	
+	f4.add(lx3);
+	lx3.setBounds(100, 200, 30, 35);
+	
+	f4.add(lx4);
+	lx4.setBounds(100, 250, 30, 35);
+	
+	f4.add(lx5);
+	lx5.setBounds(100, 300, 30, 35);
+	
+	f4.add(lx6);
+	lx6.setBounds(100, 350, 30, 35);
+	
+	f4.add(tt1);
+	tt1.setBounds(150, 100, 250, 35);
+	
+	f4.add(tt2);
+	tt2.setBounds(150, 150, 200, 35);
+	
+	f4.add(tt3);
+	tt3.setBounds(150, 200, 200, 35);
+	
+	f4.add(tt4);
+	tt4.setBounds(150, 250, 200, 35);
+	
+	f4.add(tt5);
+	tt5.setBounds(150, 300, 200, 35);
+	
+	f4.add(tt6);
+	tt6.setBounds(150, 350, 200, 35);
+	
+	f4.add(b5);
+	b5.setBounds(220, 400, 100, 38);
+	
+}public void five(){
+	f5.setSize(500,500);
+	f5.setVisible(true);
+	f5.setLocation(100, 100);
+	f5.setLayout(null);
+
+	
+	Font font = new Font("Courier", Font.BOLD,18);
+	lf0.setFont(font);
+	
+	f5.add(lf0);
+	lf0.setBounds(100, 10, 300 , 38);
+	
+	
+	f5.add(lf1);
+	lf1.setBounds(50, 100, 200 , 38);
+	
+
+		
+	f5.add(r1);
+	r1.setBounds(100, 150,100, 35);
+	
+	f5.add(r2);
+	r2.setBounds(100, 200, 100, 35);
+	
+	f5.add(r3);
+	r3.setBounds(100, 250, 100, 35);
+	
+	f5.add(r4);
+	r4.setBounds(100, 300, 100, 35);
+	
+	///////////////////////////////////////////////		
+	f5.add(tf1);
+	tf1.setBounds(100, 100, 300, 35);  //question
+	
+	f5.add(tf2);
+	tf2.setBounds(150, 150, 200, 35);
+	
+	f5.add(tf3);
+	tf3.setBounds(150, 200, 200, 35);
+	
+	f5.add(tf4);
+	tf4.setBounds(150, 250, 200, 35);
+	
+	f5.add(tf5);
+	tf5.setBounds(150, 300, 200, 35);
+	
+	
+
+	f5.add(b7);
+	b7.setBounds(220, 400, 100, 38);
+	
+	f5.add(b8);
+	b8.setBounds(120, 400, 100, 38);
+	
+	
+	G.add(r1);
+	G.add(r2);
+	G.add(r3);
+	G.add(r4);
+	
+	
+	
+}
+public void six(){
+Font font = new Font("Courier", Font.BOLD,18);
+	
+	f6.setSize(500,500);
+	f6.setVisible(true);
+	f6.setLocation(100, 100);
+	f6.setLay
+out(null);
+	
+	
+	f6.add(c1);
+	c1.setBounds(100, 150, 120, 38);
+		
+	f6.add(b6);
+	b6.setBounds(250, 150, 120, 38);
+	
+}
+}
